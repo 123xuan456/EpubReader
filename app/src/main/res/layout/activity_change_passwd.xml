@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.reeching.epub.activity.ChangePasswdActivity">
+    <include layout="@layout/top_layout1"
+        android:id="@+id/include2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        ></include>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="旧密码："
+        android:padding="15dp"
+        android:id="@+id/textView58"
+        android:layout_below="@+id/include2"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="20"
+        android:maxLength="30"
+        android:id="@+id/old_pas"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/biankuang"
+        android:layout_below="@+id/textView58"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="新密码："
+        android:padding="15dp"
+        android:id="@+id/textView"
+        android:layout_below="@+id/old_pas"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="20"
+        android:maxLength="30"
+        android:id="@+id/new_pas"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/biankuang"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+    <Button
+        android:id="@+id/change"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/new_pas"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="92dp"
+        android:background="@drawable/shape_common_btn_register"
+        android:padding="5dp"
+        android:text="修改"
+        android:textColor="#ffff"
+        android:textSize="20sp" />
+
+</RelativeLayout>

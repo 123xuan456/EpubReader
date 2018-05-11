@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_rl"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    >
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="80dip"
+        android:layout_height="111dip"
+        android:src="@drawable/ic_shelf_epub"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tvBookName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="middle"
+        android:layout_marginTop="5dp"
+        android:text="23123213"
+        android:textSize="12sp"
+        android:layout_below="@+id/cover"
+        android:layout_centerHorizontal="true">
+    </TextView>
+    <TextView
+        android:id="@+id/tvDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="可以下载"
+        android:gravity="center"
+        android:background="@color/title"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"
+        android:textSize="12sp"
+        android:padding="3dp"
+        android:layout_below="@+id/tvBookName"
+        android:layout_alignLeft="@+id/cover"
+        android:layout_alignStart="@+id/cover"
+        android:layout_alignRight="@+id/cover"
+        android:layout_alignEnd="@+id/cover" />
+    <TextView
+        android:id="@+id/tvRead"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12312321"
+        android:textSize="10sp"
+        android:layout_below="@+id/tvDown"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:id="@+id/bookshelfFileSelectIcon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:background="@drawable/checkbox_unselect"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/cover"
+        android:layout_alignEnd="@+id/cover" />
+
+</RelativeLayout>

@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">电子阅读器</string>
+    <!-- 首页面 -->
+    <string name="hometop_title"> 编辑</string>
+    <string name="homebook_title"> 书架</string>
+
+    <!-- 扫描本地书籍页面 -->
+    <string name="scan_book"> 扫描本地书籍</string>
+    <string name="scaning_book"> 正在扫描中。。。</string>
+    <string name="read_no">未读</string>
+
+    <!-- 分类页面 -->
+    <string name="sort_title"> 分类</string>
+    <string name="book_name"> 书名</string>
+    <string name="book_search"> 红楼梦</string>
+    <string name="search_history"> 搜索历史</string>
+
+    <!-- 消息页面 -->
+    <string name="message"> 消息中心</string>
+    <string name="tab_inform"> 通知</string>
+    <string name="tab_notice"> 公告</string>
+
+    <!-- 我的页面 -->
+    <string name="mine"> 我的</string>
+
+    <string name="mybook"> 我的图书</string>
+    <string name="myintegral"> 我的积分</string>
+    <string name="mydownlond"> 我的下载</string>
+    <string name="set"> 设置</string>
+    <string name="title_activity_login">登录</string>
+
+
+    <!-- 登录页-->
+    <string name="login_failure"> 登录失败</string>
+    <string name="login_no"> 未登录</string>
+    <string name="login_yes"> 已登录</string>
+    <string name="login_successfully">登录成功</string>
+    <string name="prompt_password">密码</string>
+    <string name="button_login">登录</string>
+    <string name="prompt_phone">输入手机号</string>
+    <string name="button_signup">注册</string>
+    <string name="forget_password">忘记密码</string>
+    <string name="action_sign_in_short">登录</string>
+    <string name="please_input_limit_pwd">请输入数字或字母</string>
+    <string name="title_activity_settings">设置</string>
+
+
+    <!--注册-->
+    <string name="register_top">注册</string>
+    <string name="revise_top">个人信息</string>
+    <string name="revise_btn">修改</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="register_msg">保存成功</string>
+
+
+    <string name="book_detail_remove_collection">已添加</string>
+    <string name="book_detail_join_collection">添加书架</string>
+    <string name="book_detail_hot_reviews">热门书评</string>
+    <string name="book_detail_news_reviews">最新评论</string>
+
+    <string name="menu_scan">快速扫描</string>
+    <string name="menu_file">本地文件</string>
+
+
+    <string name="feed_back">请输入您的反馈建议</string>
+    <string name="suggest">提交</string>
+    <string name="feedback">意见反馈</string>
+
+
+
+
+    <string name="change_passwd">修改密码</string>
+
+</resources>

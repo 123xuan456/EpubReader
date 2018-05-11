@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.reeching.epub.activity.SettingActivity">
+
+    <include layout="@layout/top_layout1"
+        android:id="@+id/include2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+      ></include>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/tv_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="设置"
+            android:textColor="@color/common_h3"
+            android:textSize="@dimen/book_read_bottom_text" />
+
+        <RelativeLayout
+            android:id="@+id/bookshelfSort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_setting"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="书架排序"
+                android:textColor="@color/common_h1" />
+
+            <TextView
+                android:id="@+id/mTvSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/right"
+                android:text="按最近阅读"
+                android:textColor="@color/common_h2" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/bookshelfSort"
+            android:background="@color/common_divider_narrow" />
+
+        <RelativeLayout
+            android:id="@+id/updateNotification"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line_1"
+            android:background="@color/common_bg"
+            android:padding="@dimen/activity_vertical_margin"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="更新通知"
+                android:textColor="@color/common_h1" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/updateNotification"
+            android:background="@color/common_divider_narrow"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/provincialTraffic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line_2"
+            android:background="@drawable/touch_bg"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="省流量模式（无头像）"
+                android:textColor="@color/common_h1" />
+
+            <android.support.v7.widget.SwitchCompat
+                android:id="@+id/noneCoverCompat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:minWidth="30dp"
+                android:textOff="关"
+                android:textOn="开" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_6"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/provincialTraffic"
+            android:background="@color/common_divider_narrow"
+            android:visibility="visible" />
+
+        <RelativeLayout
+            android:id="@+id/rlFlipStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line_6"
+            android:background="@drawable/touch_bg"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="阅读页翻页效果"
+                android:textColor="@color/common_h1" />
+
+            <TextView
+                android:id="@+id/tvFlipStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/right"
+                android:text="翻书效果"
+                android:textColor="@color/common_h2" />
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rlFlipStyle"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="更多"
+            android:textColor="@color/common_h3"
+            android:textSize="@dimen/book_read_bottom_text" />
+
+        <RelativeLayout
+            android:id="@+id/disclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_more"
+            android:background="@color/common_bg"
+            android:padding="@dimen/activity_vertical_margin"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="免责声明"
+                android:textColor="@color/common_h1" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_3"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/disclaimer"
+            android:background="@color/common_divider_narrow"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/aboutUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_line_3"
+            android:background="@drawable/touch_bg"
+            android:clickable="true"
+            android:padding="@dimen/activity_vertical_margin">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:text="关于我们"
+                android:textColor="@color/common_h1" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/view_line_4"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_below="@+id/aboutUs"
+            android:background="@color/common_divider_narrow" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/changePasswd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_line_4"
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="修改密码"
+            android:textColor="@color/common_h1" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_line_10"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/feedBack"
+        android:background="@color/common_divider_narrow" />
+    <RelativeLayout
+        android:id="@+id/feedBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_line_4"
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="意见反馈"
+            android:textColor="@color/common_h1" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_line_5"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/feedBack"
+        android:background="@color/common_divider_narrow" />
+
+    <RelativeLayout
+        android:id="@+id/cleanCache"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_line_5"
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="清除缓存"
+            android:textColor="@color/common_h1" />
+
+        <TextView
+            android:id="@+id/tvCacheSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="10dp"
+            android:drawableRight="@mipmap/right"
+            android:text="0.00M"
+            android:textColor="@color/common_h2" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view_line_7"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/cleanCache"
+        android:background="@color/common_divider_narrow" />
+
+    <RelativeLayout
+        android:id="@+id/appUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_line_7"
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="检查更新"
+            android:textColor="@color/common_h1" />
+    </RelativeLayout>
+    <View
+        android:id="@+id/view_line_8"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/cleanCache"
+        android:background="@color/common_divider_narrow" />
+
+    <RelativeLayout
+        android:id="@+id/quit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view_line_7"
+        android:background="@drawable/touch_bg"
+        android:clickable="true"
+        android:padding="@dimen/activity_vertical_margin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="退出登录"
+            android:textColor="@color/common_h1" />
+    </RelativeLayout>
+</LinearLayout>

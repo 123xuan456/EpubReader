@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_bg"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+    <include layout="@layout/top_layout1"
+        android:id="@+id/include5"></include>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:layout_below="@+id/include5"
+    android:layout_above="@+id/ndewbfhwb">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include5"
+        android:layout_above="@+id/ndewbfhwb"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp">
+
+            <ImageView
+                android:id="@+id/ivBookCover"
+                android:layout_width="55dp"
+                android:layout_height="75dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover_default" />
+
+            <TextView
+                android:id="@+id/tvBookListTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="10dp"
+                android:layout_toRightOf="@+id/ivBookCover"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/common_h1"
+                android:textSize="16sp"
+                tools:text="武侠世界自由行" />
+
+            <TextView
+                android:id="@+id/tvBookListAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBookListTitle"
+                android:layout_toRightOf="@+id/ivBookCover"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/orange"
+                android:textSize="13sp"
+                tools:text="w风雪 | " />
+
+            <TextView
+                android:id="@+id/tvCatgory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBookListTitle"
+                android:layout_toRightOf="@id/tvBookListAuthor"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/common_h2"
+                android:textSize="13sp"
+                tools:text="仙侠  " />
+
+
+            <TextView
+                android:id="@+id/tvLatelyUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvBookListAuthor"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/ivBookCover"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/common_h2"
+                android:textSize="13sp"
+                tools:text="4月前" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/ivBookCover"
+                android:layout_marginTop="10dp">
+
+                <com.reeching.epub.view.DrawableCenterButton
+                    android:id="@+id/btnJoinCollection"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_common_btn_solid_selector"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/book_detail_info_add_img"
+                    android:padding="10dp"
+                    android:drawablePadding="5dp"
+                    android:text="@string/book_detail_join_collection"
+                    android:textColor="@color/white" />
+
+                <com.reeching.epub.view.DrawableCenterButton
+                    android:id="@+id/btnDown"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_common_btn_solid_selector"
+                    android:clickable="true"
+                    android:drawableLeft="@mipmap/dow"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:text="下载"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/common_divider_narrow" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="下载人数"
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvLatelyFollower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/common_h1"
+                    android:textSize="15sp"
+                    tools:text="82" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:visibility="invisible"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="读者留存率"
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvRetentionRatio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/common_h1"
+                    android:textSize="15sp"
+                    tools:text="20.29%" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="invisible"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="日更新字数"
+                    android:textColor="@color/common_h2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tvSerializeWordCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:textColor="@color/common_h1"
+                    android:textSize="15sp"
+                    tools:text="4614" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="10dp"
+            android:background="@color/common_divider_narrow" />
+
+        <!--<com.justwayward.reader.view.TagGroup-->
+        <!--android:id="@+id/tag_group"-->
+        <!--style="@style/TagGroup"-->
+        <!--android:layout_marginLeft="15dp"-->
+        <!--android:layout_marginRight="15dp" />-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_margin="10dp"
+            android:background="@color/common_divider_narrow" />
+
+        <TextView
+            android:id="@+id/tvlongIntro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:padding="15dp"
+            android:textColor="@color/common_h1"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/common_divider_wide" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="15dp"
+                android:text="@string/book_detail_news_reviews"
+                android:textColor="@color/common_h1"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvMoreReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:padding="15dp"
+                android:visibility="gone"
+                android:text="更多"
+                android:textColor="@color/common_h2"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/common_divider_wide" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvHotReview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/ndewbfhwb"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_below="@+id/textView"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="#b3b3b3"></View>
+        <RelativeLayout
+            android:id="@+id/txtbottomshare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/write_comment"
+            android:gravity="center_vertical">
+
+            <EditText
+                android:id="@+id/txtedit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:drawableLeft="@drawable/write_bg"
+                android:enabled="true"
+                android:hint=" 评论"
+                android:padding="5dp"
+                android:layout_toLeftOf="@+id/btnpinglun"
+                android:layout_toStartOf="@+id/btnpinglun" />
+            <TextView
+                android:id="@+id/btnpinglun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="发送"
+                android:textSize="17sp"
+                android:layout_alignBottom="@+id/txtedit"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

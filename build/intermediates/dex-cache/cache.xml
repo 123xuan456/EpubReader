@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="378260aa1b9225aa6b02def20074720ffc5ab2aa">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\classes_1ae07a69988f3878d9d72f4d2c3ad6248e51689c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\universal-image-loader-1.9.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4e2ec9a1a288c4a652f0611e2c2c31ab0f9df8fb">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.5_bce3249ddea4cd3079822f9210cc45244b866a84.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\app\libs\bcprov-jdk15on-1.58.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2c9aa1c4e3372b447ba5daabade4adf2a2264b12">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\bcprov-jdk15on-1.58_4a68a096699a2c68e111add10c84a504c0ba28bb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\json-simple-1.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="397e18dd99731952dcb47bff4c9245af86854886">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\json-simple-1.1.1_e3aaa3c4886c60e3d2354a0f3c2ab90c1d8fc36d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\nanohttpd-2.0.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5cbe509d62d3239fc191253ca195a4dcd745ae29">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\nanohttpd-2.0.5_a2da96de938236433ddae361daa7bc5f2ff38616.jar" />
+    </item>
+
+</items>
