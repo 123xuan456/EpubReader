@@ -1,6 +1,7 @@
 package com.reeching.epub.base;
 
 import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.koolearn.android.util.SharedPreferencesUtil;
 import com.koolearn.klibrary.ui.android.library.ZLAndroidApplication;
@@ -17,7 +18,10 @@ public class BaseAppliction extends ZLAndroidApplication {
     public void onCreate() {
         super.onCreate();
         SharedPreferencesUtil.init(getApplicationContext(), getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
+        //科大讯飞
+//        SpeechUtility.createUtility(BaseAppliction.this, "appid=5af55ed6");
         OkGo.init(this);
+        MultiDex.install(this);
         LitePal.initialize(this);
     }
 }

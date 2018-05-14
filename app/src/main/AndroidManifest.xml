@@ -12,9 +12,12 @@
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -58,7 +61,8 @@
 
         <service android:name="okserver.download.DownloadService" />
 
-        <activity android:name=".activity.ChangePasswdActivity"></activity>
+        <activity android:name=".activity.ChangePasswdActivity" />
+        <activity android:name=".Main3Activity"></activity>
     </application>
 
 </manifest>

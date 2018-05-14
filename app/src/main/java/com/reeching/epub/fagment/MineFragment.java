@@ -26,6 +26,7 @@ import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.reeching.epub.constant.Constant.LOGIN_ID;
+import static com.reeching.epub.constant.Constant.LOGIN_LOGINNAME;
 import static com.reeching.epub.constant.Constant.LOGIN_NICKNAME;
 import static com.reeching.epub.constant.Constant.LOGIN_PASSWORD;
 import static com.reeching.epub.constant.Constant.LOGIN_PHONENUMBER;
@@ -60,6 +61,7 @@ public class MineFragment extends Fragment {
     private String sex;
     boolean isLogin=false;
     private String user_Id;
+    private String loginName;
 
 
     public MineFragment() {
@@ -89,14 +91,15 @@ public class MineFragment extends Fragment {
         super.onStart();
         LogUtils.i("onStart");
         nickName= SharedPreferencesUtil.getInstance().getString(LOGIN_NICKNAME,"");
+        loginName= SharedPreferencesUtil.getInstance().getString(LOGIN_LOGINNAME,"");
         user_Id= SharedPreferencesUtil.getInstance().getString(LOGIN_ID,"");
         passWord=SharedPreferencesUtil.getInstance().getString(LOGIN_PASSWORD,"");
         phone=SharedPreferencesUtil.getInstance().getString(LOGIN_PHONENUMBER,"");
         photo=SharedPreferencesUtil.getInstance().getString(LOGIN_PHOTO,"");
         sex=SharedPreferencesUtil.getInstance().getString(LOGIN_SEX,"");
 
-        if (!nickName.equals("")){
-            tv_login.setText(nickName);
+        if (!loginName.equals("")){
+            tv_login.setText(loginName);
             isLogin=true;
             String photoUrl = SERVIECE_DOWNLOND + photo;
             GlideUtils.loadImageViewDiskCache(getActivity(),photoUrl,circle,R.mipmap.hand);

@@ -1,1 +1,1 @@
-include ':app',':readerLib',  ':myapplication'
+include ':app', ':readerLib', ':myapplication', ':speechDemo'

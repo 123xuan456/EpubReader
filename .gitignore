@@ -10,7 +10,6 @@ mappings/
 READY/
 .classpath
 .settings
-*.so
 *~
 
 # Android Studio

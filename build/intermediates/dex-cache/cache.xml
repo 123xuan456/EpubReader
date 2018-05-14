@@ -3,6 +3,24 @@
 
     <item
         is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\universal-image-loader-1.9.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4e2ec9a1a288c4a652f0611e2c2c31ab0f9df8fb">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.5_bce3249ddea4cd3079822f9210cc45244b866a84.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\app\libs\Sunflower.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8f70fed02b42eb18d2a67bdcf9470ec2d760bf1d">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\Sunflower_f06dfee2dc33bdca58de8337889ba1b3f8d94258.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -12,12 +30,57 @@
     </item>
     <item
         is-multidex="false"
-        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\universal-image-loader-1.9.5.jar"
+        jar="E:\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="J:\Work\EpubReader\speechDemo\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_ff29343e76156bb2992d43788fdbd51cd90a4617.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\sdk\.android\build-cache\a682e61963d0dc34b972beeffed9da1f9122ca70\output\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="J:\Work\EpubReader\speechDemo\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_7e78be5b5e4a70f706eb1886bc8436cc3783e84e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\app\libs\Msc.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="4e2ec9a1a288c4a652f0611e2c2c31ab0f9df8fb">
-        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\universal-image-loader-1.9.5_bce3249ddea4cd3079822f9210cc45244b866a84.jar" />
+        sha1="53232ff5d59ae2569d1c971f89e025cda9367dc4">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\Msc_da3fe746e05497422f99ec0a0d1d9ed1029304b2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\nanohttpd-2.0.5.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5cbe509d62d3239fc191253ca195a4dcd745ae29">
+        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\nanohttpd-2.0.5_a2da96de938236433ddae361daa7bc5f2ff38616.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\speechDemo\libs\Sunflower.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="8a8c9c517d66ce011356a686059be91d32a89bc2">
+        <dex dex="J:\Work\EpubReader\speechDemo\build\intermediates\pre-dexed\debug\Sunflower_d59892a4f8a2b07936ad313648a77edadb36804f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="J:\Work\EpubReader\speechDemo\libs\Msc.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="53232ff5d59ae2569d1c971f89e025cda9367dc4">
+        <dex dex="J:\Work\EpubReader\speechDemo\build\intermediates\pre-dexed\debug\Msc_2ce14a2696f9a7b34769c116cadc9d1f40f3fb47.jar" />
     </item>
     <item
         is-multidex="false"
@@ -39,12 +102,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="J:\Work\EpubReader\readerLib\build\intermediates\bundles\default\libs\nanohttpd-2.0.5.jar"
-        jumboMode="true"
+        jar="E:\sdk\.android\build-cache\a682e61963d0dc34b972beeffed9da1f9122ca70\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="26.0.2"
-        sha1="5cbe509d62d3239fc191253ca195a4dcd745ae29">
-        <dex dex="J:\Work\EpubReader\app\build\intermediates\pre-dexed\debug\nanohttpd-2.0.5_a2da96de938236433ddae361daa7bc5f2ff38616.jar" />
+        revision="25.0.2"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="J:\Work\EpubReader\speechDemo\build\intermediates\pre-dexed\debug\classes_a7dab759a9efb2830a3e45fe943f0015b7bf2087.jar" />
     </item>
 
 </items>

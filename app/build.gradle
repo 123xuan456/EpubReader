@@ -8,9 +8,12 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     dexOptions {
         jumboMode true
+        incremental true
+        javaMaxHeapSize "4g"
     }
     buildTypes {
         release {
@@ -25,9 +28,11 @@ android {
 dependencies {
     compile project(':readerLib')
     compile files('libs/bcprov-jdk15on-1.58.jar')
+    compile files('libs/Msc.jar')
+    compile files('libs/Sunflower.jar')
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'org.litepal.android:core:1.6.0'
     compile 'top.zibin:Luban:1.0.9'
+    compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
 }
