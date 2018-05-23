@@ -15,6 +15,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
 
+import com.koolearn.android.util.LogUtils;
 import com.koolearn.klibrary.core.filesystem.ZLFile;
 import com.koolearn.klibrary.core.fonts.FontEntry;
 import com.koolearn.klibrary.core.image.ZLImageData;
@@ -27,6 +28,7 @@ import com.koolearn.klibrary.ui.android.util.ZLAndroidColorUtil;
 import com.koolearn.kooreader.bookmodel.TOCTree;
 import com.koolearn.kooreader.kooreader.KooReaderApp;
 
+import java.util.Arrays;
 import java.util.List;
 
 public final class ZLAndroidPaintContext extends ZLPaintContext {
@@ -468,9 +470,9 @@ public final class ZLAndroidPaintContext extends ZLPaintContext {
 
     @Override
     public void drawString(int x, int y, char[] string, int offset, int length) {
-//        LogUtil.i10("drawString1:" + x + ":" + y);
-//        LogUtil.i12("drawString2:" + Arrays.toString(string));
-//        LogUtil.i10("drawString3:" + offset + ":" + length);
+//        LogUtils.i("drawString1:" + x + ":" + y);
+//        LogUtils.i("drawString2:" + Arrays.toString(string));
+//        LogUtils.i("drawString3:" + offset + ":" + length);
 //        y = y + 20;
         boolean containsSoftHyphen = false;
         for (int i = offset; i < offset + length; ++i) {
@@ -481,6 +483,7 @@ public final class ZLAndroidPaintContext extends ZLPaintContext {
         }
         if (!containsSoftHyphen) {
             myCanvas.drawText(string, offset, length, x, y, myTextPaint);
+//            LogUtils.i("drawString2:" + Arrays.toString(string));
         } else {
             final char[] corrected = new char[length];
             int len = 0;
@@ -491,6 +494,7 @@ public final class ZLAndroidPaintContext extends ZLPaintContext {
                 }
             }
             myCanvas.drawText(corrected, 0, len, x, y, myTextPaint);
+            LogUtils.i("drawString2:" + Arrays.toString(corrected));
         }
     }
 

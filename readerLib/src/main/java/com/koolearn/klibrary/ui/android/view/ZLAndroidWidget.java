@@ -25,6 +25,7 @@ import com.koolearn.klibrary.ui.android.view.animation.ShiftAnimationProvider;
 import com.koolearn.klibrary.ui.android.view.animation.SlideAnimationProvider;
 import com.koolearn.kooreader.Paths;
 
+import java.io.ByteArrayOutputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -258,6 +259,9 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
          * 从myBitmapManager获取一张Bitmap,画到画布上
          * myBitmapManager.getBitmap(ZLView.PageIndex.current)是自己创建的canvas,将该view的canva和其连起来才可以显示在view上
          */
+        Bitmap bitmap = myBitmapManager.getBitmap(ZLView.PageIndex.current);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         canvas.drawBitmap(myBitmapManager.getBitmap(ZLView.PageIndex.current), 0, 0, myPaint);
         post(new Runnable() { // 将runnable放到消息队列中
             public void run() {

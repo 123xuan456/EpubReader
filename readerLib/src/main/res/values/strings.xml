@@ -16,4 +16,5 @@
     <string name="input_hint">请输入关键字</string>
     <string name="input_prefill"></string>
     <string name="default_search_keyword">哈利</string>
+    <string formatted="false" name="tts_toast_format">缓冲进度为%d%%，播放进度为%d%%</string>
 </resources>

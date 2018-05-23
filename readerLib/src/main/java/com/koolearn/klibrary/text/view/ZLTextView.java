@@ -1,5 +1,6 @@
 package com.koolearn.klibrary.text.view;
 
+import com.koolearn.android.util.LogUtils;
 import com.koolearn.klibrary.core.application.ZLApplication;
 import com.koolearn.klibrary.core.filesystem.ZLFile;
 import com.koolearn.klibrary.core.library.ZLibrary;
@@ -540,6 +541,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
         context.drawFooter(buildTimeString(), pagePositionPecReal(page));
 //        PagePosition pagePosition = pagePosition();
 //        String position = buildPositionString(pagePosition);
+//        LogUtils.i(position);
     }
 
     protected String buildTimeString() {
@@ -830,7 +832,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
         info.append("%");
         return info.toString();
     }
-
+    //阅读进度百分比
     public final synchronized String pagePositionPecReal(ZLTextPage page) {
         int current = getCurrentNumber(page, false); // 传入要绘制的page
         int total = sizeOfFullText();
@@ -949,12 +951,15 @@ public abstract class ZLTextView extends ZLTextViewBase {
             return;
         }
         for (int wordIndex = info.RealStartElementIndex; wordIndex != endElementIndex && index < to; ++wordIndex, charIndex = 0) {
+            //每页的字
             final ZLTextElement element = paragraph.getElement(wordIndex);
+//            LogUtils.i(element.toString());
+
             final ZLTextElementArea area = pageAreas.get(index);
             if (element == area.Element) {
                 ++index;
                 if (area.ChangeStyle) {
-                    setTextStyle(area.Style);
+                        setTextStyle(area.Style);
                 }
                 final int areaX = area.XStart;
                 final int areaY = area.YEnd - getElementDescent(element) - getTextStyle().getVerticalAlign(metrics());
@@ -1001,6 +1006,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
                 } else if (element == ZLTextElement.HSpace || element == ZLTextElement.NBSpace) {
                     final int cw = context.getSpaceWidth();
                     for (int len = 0; len < area.XEnd - area.XStart; len += cw) {
+                        LogUtils.i(SPACE.toString());
                         context.drawString(areaX + len, areaY, SPACE, 0, 1);
                     }
                 }
@@ -1527,9 +1533,9 @@ public abstract class ZLTextView extends ZLTextViewBase {
 
         final HashMap<ZLTextLineInfo, ZLTextLineInfo> cache = myLineInfoCache;
         for (ZLTextLineInfo info : page.LineInfos) {
+            LogUtils.i(page.LineInfos.toString());
             cache.put(info, info); // 加入缓存
         }
-
         switch (page.PaintState) {
             default:
                 break;

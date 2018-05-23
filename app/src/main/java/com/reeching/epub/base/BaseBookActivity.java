@@ -42,6 +42,7 @@ public abstract class BaseBookActivity extends Activity {
         ButterKnife.bind(this);
         SD_KEYBOOKS= getExternalFilesDirPath(BaseBookActivity.this)+"downlond/";
         mContext=this;
+
         transparent19and20();
         /**
          * 对各种控件进行设置、适配、填充数据

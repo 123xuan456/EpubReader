@@ -13,6 +13,8 @@ class ShowNavigationAction extends KooAndroidAction {
 	public boolean isVisible() {
 		final ZLTextView view = (ZLTextView)Reader.getCurrentView();
 		final ZLTextModel textModel = view.getModel();
+		textModel.getMarks();
+
 		return textModel != null && textModel.getParagraphsNumber() != 0;
 	}
 

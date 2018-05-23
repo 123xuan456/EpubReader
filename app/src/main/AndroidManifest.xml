@@ -62,7 +62,7 @@
         <service android:name="okserver.download.DownloadService" />
 
         <activity android:name=".activity.ChangePasswdActivity" />
-        <activity android:name=".Main3Activity"></activity>
+        <!--<activity android:name=".Main3Activity"></activity>-->
     </application>
 
 </manifest>

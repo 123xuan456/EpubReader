@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.koolearn.android.kooreader.VoiceWindow xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/voice_panel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:background="#DF111111"
+    android:focusable="false"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:visibility="visible">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/tts_play"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="开始合成"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/tts_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="取消"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/tts_pause"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="暂停播放"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/tts_resume"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="继续播放"
+            android:textSize="20sp" />
+    </LinearLayout>
+</com.koolearn.android.kooreader.VoiceWindow>

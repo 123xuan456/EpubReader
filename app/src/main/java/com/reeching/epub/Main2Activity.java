@@ -60,6 +60,7 @@ public class Main2Activity extends AppCompatActivity {
         String photo = SharedPreferencesUtil.getInstance().getString(LOGIN_PHOTO, "");
         String photoUrl = SERVIECE_DOWNLOND + photo;
        LogUtils.i(photoUrl);
+        textView3.setText(String.format(getResources().getString(R.string.my_info),"小王","打架","一起"));
         /**
          * android创建隐藏文件或者文件夹，其实只要在文件名或者文件夹名字前加一个点号即可。
          隐藏文件（夹）可直接进行读写。

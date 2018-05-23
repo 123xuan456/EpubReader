@@ -129,10 +129,12 @@ public final class ZLTextParagraphCursor {
 				final ZLTextElement hSpace = ZLTextElement.HSpace;
 				final ZLTextElement nbSpace = ZLTextElement.NBSpace;
 				final ArrayList<ZLTextElement> elements = myElements;
+
 				char ch = 0;
 				char previousChar = 0;
 				int spaceState = NO_SPACE;
 				int wordStart = 0;
+
 				for (int index = 0; index < length; ++index) {
 					previousChar = ch;
 					ch = data[offset + index];

@@ -28,7 +28,7 @@
     <string name="mydownlond"> 我的下载</string>
     <string name="set"> 设置</string>
     <string name="title_activity_login">登录</string>
-
+    <string name="my_info">我叫%1$s，%2$s6，不信可以%3$s一起玩!</string>
 
     <!-- 登录页-->
     <string name="login_failure"> 登录失败</string>

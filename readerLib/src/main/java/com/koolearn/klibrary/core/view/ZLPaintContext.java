@@ -164,6 +164,7 @@ abstract public class ZLPaintContext {
 
     abstract public void drawString(int x, int y, char[] string, int offset, int length);
 
+
     public static final class Size {
         public final int Width;
         public final int Height;

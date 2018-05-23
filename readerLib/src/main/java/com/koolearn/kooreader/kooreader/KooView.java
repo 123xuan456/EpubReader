@@ -1,6 +1,7 @@
 package com.koolearn.kooreader.kooreader;
 
 import com.koolearn.android.kooreader.OpenPhotoAction;
+import com.koolearn.android.util.LogUtils;
 import com.koolearn.klibrary.core.filesystem.ZLFile;
 import com.koolearn.klibrary.core.filesystem.ZLResourceFile;
 import com.koolearn.klibrary.core.library.ZLibrary;
@@ -742,13 +743,15 @@ public final class KooView extends ZLTextView {
             myReader.runAction(ActionCode.SELECTION_SHOW_PANEL);
         }
     }
-
+        //获取选中的文字数据
     public TextSnippet getSelectedSnippet() {
         final ZLTextPosition start = getSelectionStartPosition();
         final ZLTextPosition end = getSelectionEndPosition();
         if (start == null || end == null) {
             return null;
         }
+        LogUtils.i("选择起点="+start);
+        LogUtils.i("选择终点="+end);
         final TextBuildTraverser traverser = new TextBuildTraverser(this);
         traverser.traverse(start, end);
         return new FixedTextSnippet(start, end, traverser.getText());

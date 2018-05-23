@@ -299,13 +299,24 @@ abstract class ZLTextViewBase extends ZLView {
         }
         return 0;
     }
-
+    protected final StringBuilder myBuffer = new StringBuilder();
+    public String getText(){
+        return myBuffer.toString();
+    }
+    //
+    public void cleanText(){
+        myBuffer.delete(0,myBuffer.length());
+    }
     final void drawWord(int x, int y, ZLTextWord word, int start, int length, boolean addHyphenationSign, ZLColor color) {
+
         final ZLPaintContext context = getContext();
+        //每页的文字
         if (start == 0 && length == -1) {
+//            LogUtils.i(word.toString());
+            myBuffer.append(word);
             drawString(context, x, y, word.Data, word.Offset, word.Length, word.getMark(), color, 0);
         } else {
-            LogUtils.i10("drawWord");
+            LogUtils.i("drawWord");
             if (length == -1) {
                 length = word.Length - start;
             }
@@ -326,11 +337,17 @@ abstract class ZLTextViewBase extends ZLView {
 
     // 绘制文字
     private final void drawString(ZLPaintContext context, int x, int y, char[] str, int offset, int length, ZLTextWord.Mark mark, ZLColor color, int shift) {
+//        LogUtils.i(String.valueOf(x));
+//        LogUtils.i(String.valueOf(y));
+//        LogUtils.i(String.valueOf(str));
+//        LogUtils.i(String.valueOf(offset));
+//        LogUtils.i(String.valueOf(length));
         if (mark == null) {
             context.setTextColor(color);
             context.drawString(x, y, str, offset, length);
         } else {
-            LogUtils.i10("drawString");
+
+            LogUtils.i("drawString");
             int pos = 0;
             for (; (mark != null) && (pos < length); mark = mark.getNext()) {
                 int markStart = mark.Start - shift;

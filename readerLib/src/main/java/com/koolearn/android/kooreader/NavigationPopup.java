@@ -32,10 +32,12 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
     private ZLTextView.PagePosition pagePosition;
     private TextView light;
     private TextView dark;
-
+    // 数据接口
+    onVoice monVoice;
     NavigationPopup(KooReaderApp kooReader) {
         super(kooReader);
         myKooReader = kooReader;
+
     }
 
     public void setPanelInfo(KooReader activity, RelativeLayout root) {
@@ -102,7 +104,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
         myKooReader.getViewWidget().repaint();
     }
 
-    private void createPanel(KooReader activity, RelativeLayout root) {
+    private void createPanel(final KooReader activity, RelativeLayout root) {
         if (myWindow != null && activity == myWindow.getContext()) {
             return;
         }
@@ -114,6 +116,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
         final TextView text = (TextView) myWindow.findViewById(R.id.navigation_text);
         final TextView toc = (TextView) myWindow.findViewById(R.id.navigation_toc);
         final TextView fonts = (TextView) myWindow.findViewById(R.id.navigation_fonts);
+        final TextView voice = (TextView) myWindow.findViewById(R.id.navigation_voice);
         light = (TextView) myWindow.findViewById(R.id.navigation_light);
         dark = (TextView) myWindow.findViewById(R.id.navigation_dark);
         final TextView pre_character = (TextView) myWindow.findViewById(R.id.pre_character);
@@ -130,6 +133,23 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
                 OrientationUtil.startActivity(myActivity, intent);
             }
         });
+        //听书
+        voice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Application.hideActivePopup();
+//                ZLTextView.getModel();
+                ZLTextView view = myKooReader.getTextView();
+                String text=view.getText();
+                LogUtils.i(text);
+                //将数据传递给KooReader,方便进行语音播放
+                if (monVoice!=null){
+                    monVoice.onVoiceListener(text);
+                }
+
+            }
+        });
+
 
         fonts.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +166,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
                 myKooReader.getViewWidget().reset();
                 myKooReader.getViewWidget().repaint();
                 light.setVisibility(View.VISIBLE);
-                dark.setVisibility(View.INVISIBLE);
+                dark.setVisibility(View.GONE);
             }
         });
 
@@ -154,7 +174,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
             @Override
             public void onClick(View v) {
                 dark.setVisibility(View.VISIBLE);
-                light.setVisibility(View.INVISIBLE);
+                light.setVisibility(View.GONE);
                 myKooReader.ViewOptions.ColorProfileName.setValue(ColorProfile.DAY);
                 myKooReader.getViewWidget().reset();
                 myKooReader.getViewWidget().repaint();
@@ -231,6 +251,13 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
         });
     }
 
+    public void setVoice(onVoice monVoice) {
+        this.monVoice = monVoice;
+    }
+
+    public interface onVoice{
+      void  onVoiceListener(String mag);
+    }
     private void setupNavigation() {
         final SeekBar slider = (SeekBar) myWindow.findViewById(R.id.navigation_slider);
         final TextView text = (TextView) myWindow.findViewById(R.id.navigation_text);
@@ -245,7 +272,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
         slider.setMax(textView.pagePosition2());
         slider.setProgress(textView.pagePosition1());
         text.setText(makeProgressTextPer(progress));
-
+//        LogUtils.i(makeProgressText(pagePosition.Current, pagePosition.Total));
 //            text.setText(makeProgressText(pagePosition.Current, pagePosition.Total));
 //    }
 
@@ -265,8 +292,10 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
 
         if (myKooReader.ViewOptions.ColorProfileName.getValue().equals(ColorProfile.DAY)) {
             dark.setVisibility(View.VISIBLE);
+            light.setVisibility(View.GONE);
         } else {
             light.setVisibility(View.VISIBLE);
+            dark.setVisibility(View.GONE);
         }
 
         return builder.toString();
@@ -283,8 +312,10 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
         LogUtils.i(tocElement.getText());
         if (myKooReader.ViewOptions.ColorProfileName.getValue().equals(ColorProfile.DAY)) {
             dark.setVisibility(View.VISIBLE);
+            light.setVisibility(View.GONE);
         } else {
             light.setVisibility(View.VISIBLE);
+            dark.setVisibility(View.GONE);
         }
 
         return builder.toString();
