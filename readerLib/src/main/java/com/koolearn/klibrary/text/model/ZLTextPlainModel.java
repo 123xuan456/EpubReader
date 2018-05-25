@@ -207,6 +207,7 @@ public final class ZLTextPlainModel implements ZLTextModel, ZLTextStyleEntry.Fea
                 }
                 case ZLTextParagraph.Entry.IMAGE: {
                     final short vOffset = (short) data[dataOffset++];
+
                     final short len = (short) data[dataOffset++];
                     final String id = new String(data, dataOffset, len);
                     dataOffset += len;

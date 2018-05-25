@@ -24,8 +24,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <application
         android:name=".base.BaseAppliction"
         android:allowBackup="false"
@@ -36,13 +34,16 @@
         tools:replace="android:allowBackup,android:icon, android:theme">
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
+        >
+            <!--android:launchMode="singleTask"-->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
         <activity android:name=".activity.BooKDetailsActivity" />
         <activity android:name=".Main2Activity" />
         <activity android:name=".activity.BookListsActivity" />

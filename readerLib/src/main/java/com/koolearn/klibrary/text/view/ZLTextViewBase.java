@@ -299,21 +299,15 @@ abstract class ZLTextViewBase extends ZLView {
         }
         return 0;
     }
-    protected final StringBuilder myBuffer = new StringBuilder();
-    public String getText(){
-        return myBuffer.toString();
-    }
-    //
-    public void cleanText(){
-        myBuffer.delete(0,myBuffer.length());
-    }
+
     final void drawWord(int x, int y, ZLTextWord word, int start, int length, boolean addHyphenationSign, ZLColor color) {
 
         final ZLPaintContext context = getContext();
-        //每页的文字
+        //文字
         if (start == 0 && length == -1) {
+//            LogUtils.i("x="+x);
+//            LogUtils.i("y="+y);
 //            LogUtils.i(word.toString());
-            myBuffer.append(word);
             drawString(context, x, y, word.Data, word.Offset, word.Length, word.getMark(), color, 0);
         } else {
             LogUtils.i("drawWord");

@@ -92,12 +92,43 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
         if (getAnimationProvider().inProgress()) {
             onDrawInScrolling(canvas); // 翻页过程中调用
         } else {
-
             onDrawStatic(canvas); // 首次/页面跳转时调用,防止黑屏
             ZLApplication.Instance().onRepaintFinished();
         }
+        if (aBoolean){
+            onDrawInScrolling(canvas); // 翻页过程中调用
+        }
     }
-
+    //在activity中执行此方法可以跳转到下一页
+    //具体流程我也搞不清楚。
+    boolean aBoolean;
+    public void onDraw(boolean b){
+        postLongClickRunnable();
+        myPendingPress = true;
+        aBoolean=b;
+        //因为是根据坐标来判断（上一页，下一页，菜单栏）显示
+        //所以我就设置了个默认下一页位置的坐标
+        int x=678;
+        int y=1051;
+        final ZLView view = ZLApplication.Instance().getCurrentView();
+            if (myPendingLongClickRunnable != null) {
+                removeCallbacks(myPendingLongClickRunnable);
+                myPendingLongClickRunnable = null;
+            }
+            if (myPendingPress) {
+                if (view.isDoubleTapSupported()) {
+                    if (myPendingShortClickRunnable == null) {
+                        myPendingShortClickRunnable = new ShortClickRunnable();
+                    }
+                    postDelayed(myPendingShortClickRunnable, ViewConfiguration.getDoubleTapTimeout());
+                } else {
+                    view.onFingerSingleTap(x, y);
+                }
+            } else {
+                view.onFingerRelease(x, y);
+            }
+        myPendingPress = false;
+    }
     private AnimationProvider myAnimationProvider;
     private ZLView.Animation myAnimationType;
 
@@ -141,7 +172,7 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
         if (animator.inProgress()) { // 动画过程中执行
             animator.draw(canvas); // 动画绘制
             if (animator.getMode().Auto) { // 松手后完成后续绘制
-                postInvalidate();
+                postInvalidate();//刷新页面
             }
         } else {                     // 动画结束后执行, 无动画情况只会调用这个
             switch (oldMode) {
@@ -206,7 +237,7 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
             postInvalidate();
         }
     }
-
+    //点击跳转下一页时执行
     @Override
     public void startAnimatedScrolling(ZLView.PageIndex pageIndex, ZLView.Direction direction, int speed) {
         final ZLView view = ZLApplication.Instance().getCurrentView();
@@ -276,6 +307,7 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
                 });
             }
         });
+        aBoolean=false;
     }
 
     @Override
@@ -388,6 +420,7 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
                 myPressedX = x;
                 myPressedY = y;
                 break;
+            //屏幕中拖行距离
             case MotionEvent.ACTION_MOVE: {
                 final int slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
                 final boolean isAMove =

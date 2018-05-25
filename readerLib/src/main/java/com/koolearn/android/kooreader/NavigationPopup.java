@@ -138,13 +138,10 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
             @Override
             public void onClick(View v) {
                 Application.hideActivePopup();
-//                ZLTextView.getModel();
-                ZLTextView view = myKooReader.getTextView();
-                String text=view.getText();
-                LogUtils.i(text);
+
                 //将数据传递给KooReader,方便进行语音播放
                 if (monVoice!=null){
-                    monVoice.onVoiceListener(text);
+                    monVoice.onVoiceListener();
                 }
 
             }
@@ -256,7 +253,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
     }
 
     public interface onVoice{
-      void  onVoiceListener(String mag);
+      void  onVoiceListener();
     }
     private void setupNavigation() {
         final SeekBar slider = (SeekBar) myWindow.findViewById(R.id.navigation_slider);
@@ -309,7 +306,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
             builder.append("  ");
             builder.append(tocElement.getText());
         }
-        LogUtils.i(tocElement.getText());
+//        LogUtils.i(tocElement.getText());
         if (myKooReader.ViewOptions.ColorProfileName.getValue().equals(ColorProfile.DAY)) {
             dark.setVisibility(View.VISIBLE);
             light.setVisibility(View.GONE);

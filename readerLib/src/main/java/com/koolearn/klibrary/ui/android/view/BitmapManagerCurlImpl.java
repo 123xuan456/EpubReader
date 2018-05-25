@@ -83,6 +83,7 @@ public final class BitmapManagerCurlImpl implements BitmapManager {
          * 把ZLAndroidWigetPaintContext与Bitmap进行绑定
          * 向myBitmaps[index]上画bitmap
          * 在ZLAndroidWidget绘制文字等信息
+         * 注：如有异常先恢复此方法
          */
         view.paint(context, index);
 

@@ -10,9 +10,14 @@ public class Constant {
 
 
     //主链接
-    public static final String SERVIECE_CLIENT = "http://192.168.3.110:8080/ebook/f";
+    public static final String SERVIECE_CLIENT = "http://192.168.1.109:8080/ebook/f";
     //上传下载
-    public static final String SERVIECE_DOWNLOND = "http://192.168.3.110:8080";
+    public static final String SERVIECE_DOWNLOND = "http://192.168.1.109:8080";
+//
+//    //主链接
+//    public static final String SERVIECE_CLIENT = "http://192.168.3.110:8080/ebook/f";
+//    //上传下载
+//    public static final String SERVIECE_DOWNLOND = "http://192.168.3.110:8080";
 
     //一级分类
     public static final String  FIRST_CLASSIFYING = SERVIECE_CLIENT+"/mobile/getBigType";

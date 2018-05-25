@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -63,7 +64,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
     public static final int RESULT_DO_NOTHING = RESULT_FIRST_USER;
     public String bookId ;
     private String memberId;
-    private boolean onSpeak;//判断是否正在播放
+    public boolean onSpeak;//判断是否正在播放
 
     public static void openBookActivity(Context context, Book book, Bookmark bookmark,String bookId) {
         final Intent intent = new Intent(context, KooReader.class);
@@ -151,6 +152,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
 
         myRootView = (RelativeLayout) findViewById(R.id.root_view);
         myMainView = (ZLAndroidWidget) findViewById(R.id.main_view);
+
         myCurlView = (ZLAndroidCurlWidget) findViewById(R.id.curl_view);
         myCurlView.setMargins(0, 0, 0, 0);
         myCurlView.setSizeChangedObserver(new CurlView.SizeChangedObserver() {
@@ -660,8 +662,14 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
 
     //获取语音播放的内容
     @Override
-    public void onVoiceListener(String mag) {
-        LogUtils.i(mag);
+    public void onVoiceListener() {
+        ZLTextView view = myKooReaderApp.getTextView();
+        String text=view.getText();
+        LogUtils.i("首次播放数据="+text);
+        StartPlay(text);
+    }
+
+    public void StartPlay(String text){
         if( null == mTts ){
             // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
             this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
@@ -672,14 +680,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
 
         // 设置参数
         setParam();
-        int code = mTts.startSpeaking(mag, mTtsListener);
-//			/**
-//			 * 只保存音频不进行播放接口,调用此接口请注释startSpeaking接口
-//			 * text:要合成的文本，uri:需要保存的音频全路径，listener:回调接口
-//			*/
-//			String path = Environment.getExternalStorageDirectory()+"/tts.ico";
-//			int code = mTts.synthesizeToUri(text, path, mTtsListener);
-
+        int code = mTts.startSpeaking(text, mTtsListener);
         if (code != ErrorCode.SUCCESS) {
             showTip("语音合成失败,错误码: " + code);
         }
@@ -738,6 +739,13 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
             mPercentForPlaying = percent;
             showTip(String.format(getString(R.string.tts_toast_format),
                     mPercentForBuffering, mPercentForPlaying));
+
+            if (mPercentForPlaying==98){
+                ZLTextView view = myKooReaderApp.getTextView();
+                view.cleanText();//清楚之前的数据
+                myMainView.onDraw(true);
+            }
+
         }
 
         @Override
@@ -747,7 +755,12 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
                 //播放完成自动翻页
                 //找到进入下一页的方法，在播放完成之后，先执行cleanText()将之前数据清空，然后将下页的数据传递过来，
                 //一开始写的是用户点击听书才传递数据，需要修改一下
-
+                ZLTextView view1 = myKooReaderApp.getTextView();
+                String text = view1.getText();
+                LogUtils.i("播放完成下页数据="+text);
+                if (!TextUtils.isEmpty(text)) {
+                    StartPlay(text);
+                }
 
 
             } else if (error != null) {

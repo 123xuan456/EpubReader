@@ -91,6 +91,7 @@ final class VoicePopup extends ZLApplication.PopupPanel {
             @Override
             public void onClick(View v) {
                 Application.hideActivePopup();
+                myActivity.onSpeak=false;
                 mTts.stopSpeaking();
             }
         });
@@ -99,6 +100,7 @@ final class VoicePopup extends ZLApplication.PopupPanel {
             public void onClick(View v) {
                 Application.hideActivePopup();
                 mTts.pauseSpeaking();
+                myActivity.onSpeak=false;
             }
         });
         tts_resume.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +108,7 @@ final class VoicePopup extends ZLApplication.PopupPanel {
             public void onClick(View v) {
                 Application.hideActivePopup();
                 mTts.resumeSpeaking();
+                myActivity.onSpeak=false;
             }
         });
 

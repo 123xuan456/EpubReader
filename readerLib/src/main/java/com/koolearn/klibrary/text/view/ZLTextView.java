@@ -244,8 +244,10 @@ public abstract class ZLTextView extends ZLTextViewBase {
     @Override
     public synchronized void onScrollingFinished(ZLViewEnums.PageIndex pageIndex) {
         switch (pageIndex) {
+            //现在
             case current:
                 break;
+            //向前翻页
             case previous: {
                 final ZLTextPage swap = myNextPage; // P C N
                 myNextPage = myCurrentPage; //  P->N.reset C->P N->C
@@ -269,6 +271,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
 //                Application.getViewWidget().reset(); // Fix Bugs
                 break;
             }
+            //向后翻页
             case next: { // 动画结束时翻页   P C N
                 final ZLTextPage swap = myPreviousPage;
                 myPreviousPage = myCurrentPage;  // P->C C-> N->P.reset
@@ -286,7 +289,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
                         myNextPage.PaintState = PaintStateEnum.START_IS_KNOWN;
                         break;
                 }
-
+                cleanText();//清除上一页的文字
 //                Application.getViewWidget().reset();
                 break;
             }
@@ -423,6 +426,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
     /**
      * 绘制当前页面
      */
+    int index0=0;
     @Override
     public synchronized void paint(ZLPaintContext context, ZLViewEnums.PageIndex pageIndex) {
         setContext(context);
@@ -440,9 +444,11 @@ public abstract class ZLTextView extends ZLTextViewBase {
         ZLTextPage page;
         switch (pageIndex) {
             default:
+                //当前
             case current:
                 page = myCurrentPage;
                 break;
+            //上一页
             case previous:
                 page = myPreviousPage;
                 if (myPreviousPage.PaintState == PaintStateEnum.NOTHING_TO_PAINT) {
@@ -451,6 +457,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
                     myPreviousPage.PaintState = PaintStateEnum.END_IS_KNOWN;
                 }
                 break;
+            //下一页
             case next:
                 page = myNextPage;
                 /**
@@ -499,6 +506,13 @@ public abstract class ZLTextView extends ZLTextViewBase {
         x = getLeftMargin();
         y = getTopMargin();
         index = 0;
+        /**
+         * //在程序完全退出之后，再次进入页面会执行两次，所以在此进行次数判断
+         * index0=1; 完全退出-->第一次打开电子书
+         * index0=2;需要的数据
+         */
+        ++index0;
+        LogUtils.i("i="+index0);
         for (ZLTextLineInfo info : lineInfos) {
             drawTextLine(page, hilites, info, labels[index], labels[index + 1]);
             y += info.Height + info.Descent + info.VSpaceAfter;
@@ -543,7 +557,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
 //        String position = buildPositionString(pagePosition);
 //        LogUtils.i(position);
     }
-
+    //当前时间
     protected String buildTimeString() {
         final StringBuilder info = new StringBuilder();
         info.append(ZLibrary.Instance().getCurrentTimeString());
@@ -939,6 +953,14 @@ public abstract class ZLTextView extends ZLTextViewBase {
     protected abstract ZLPaintContext.ColorAdjustingMode getAdjustingModeForImages();
 
     private static final char[] SPACE = new char[]{' '};
+    protected final StringBuilder myBuffer = new StringBuilder();
+    public String getText(){
+        return myBuffer.toString();
+    }
+    //
+    public void cleanText(){
+        myBuffer.delete(0,myBuffer.length());
+    }
 
     private void drawTextLine(ZLTextPage page, List<ZLTextHighlighting> hilites, ZLTextLineInfo info, int from, int to) {
         final ZLPaintContext context = getContext();
@@ -953,9 +975,8 @@ public abstract class ZLTextView extends ZLTextViewBase {
         for (int wordIndex = info.RealStartElementIndex; wordIndex != endElementIndex && index < to; ++wordIndex, charIndex = 0) {
             //每页的字
             final ZLTextElement element = paragraph.getElement(wordIndex);
-//            LogUtils.i(element.toString());
-
             final ZLTextElementArea area = pageAreas.get(index);
+//            LogUtils.i(element.toString());
             if (element == area.Element) {
                 ++index;
                 if (area.ChangeStyle) {
@@ -964,6 +985,12 @@ public abstract class ZLTextView extends ZLTextViewBase {
                 final int areaX = area.XStart;
                 final int areaY = area.YEnd - getElementDescent(element) - getTextStyle().getVerticalAlign(metrics());
                 if (element instanceof ZLTextWord) {
+                    LogUtils.i("i="+index0);
+                    if (index0!=1){
+                        myBuffer.append(element.toString());
+                        LogUtils.i(myBuffer.toString());
+                    }
+                    LogUtils.i(element.toString());
                     final ZLTextPosition pos =
                             new ZLTextFixedPosition(info.ParagraphCursor.Index, wordIndex, 0);
                     final ZLTextHighlighting hl = getWordHilite(pos, hilites);
@@ -1024,6 +1051,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
             final ZLTextPosition pos =
                     new ZLTextFixedPosition(info.ParagraphCursor.Index, info.EndElementIndex, 0);
             final ZLTextHighlighting hl = getWordHilite(pos, hilites);
+            LogUtils.i(word.toString());
             final ZLColor hlColor = hl != null ? hl.getForegroundColor() : null;
             drawWord(
                     area.XStart, area.YEnd - context.getDescent() - getTextStyle().getVerticalAlign(metrics()),
