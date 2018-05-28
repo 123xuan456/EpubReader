@@ -289,7 +289,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
                         myNextPage.PaintState = PaintStateEnum.START_IS_KNOWN;
                         break;
                 }
-                cleanText();//清除上一页的文字
+
 //                Application.getViewWidget().reset();
                 break;
             }
@@ -1561,7 +1561,7 @@ public abstract class ZLTextView extends ZLTextViewBase {
 
         final HashMap<ZLTextLineInfo, ZLTextLineInfo> cache = myLineInfoCache;
         for (ZLTextLineInfo info : page.LineInfos) {
-            LogUtils.i(page.LineInfos.toString());
+//            LogUtils.i(page.LineInfos.toString());
             cache.put(info, info); // 加入缓存
         }
         switch (page.PaintState) {

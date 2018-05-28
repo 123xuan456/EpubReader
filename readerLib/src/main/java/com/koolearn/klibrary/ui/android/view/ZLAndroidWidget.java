@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -12,11 +13,14 @@ import android.view.ViewConfiguration;
 
 import com.koolearn.android.kooreader.KooReader;
 import com.koolearn.android.kooreader.KooReaderMainActivity;
+import com.koolearn.android.util.LogUtils;
+import com.koolearn.android.util.SharedPreferencesUtil;
 import com.koolearn.klibrary.core.application.ZLApplication;
 import com.koolearn.klibrary.core.application.ZLKeyBindings;
 import com.koolearn.klibrary.core.util.SystemInfo;
 import com.koolearn.klibrary.core.view.ZLView;
 import com.koolearn.klibrary.core.view.ZLViewWidget;
+import com.koolearn.klibrary.text.view.ZLTextView;
 import com.koolearn.klibrary.ui.android.view.animation.AnimationProvider;
 import com.koolearn.klibrary.ui.android.view.animation.CurlAnimationProvider;
 import com.koolearn.klibrary.ui.android.view.animation.CurlPageProviderImpl;
@@ -165,7 +169,15 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
 
     private void onDrawInScrolling(Canvas canvas) {
         final ZLView view = ZLApplication.Instance().getCurrentView();
-
+        String onSpeak = SharedPreferencesUtil.getInstance().getString("onSpeak");
+        final Context context = getContext();
+        KooReader activity = null;
+        if (context instanceof KooReader) {
+            activity= ((KooReader) context);
+            activity.createWakeLock();
+        } else {
+            System.err.println("上下文异常");
+        }
         final AnimationProvider animator = getAnimationProvider();
         final AnimationProvider.Mode oldMode = animator.getMode();
         animator.doStep();
@@ -183,6 +195,18 @@ public class ZLAndroidWidget extends View implements ZLViewWidget, View.OnLongCl
                     myBitmapManager.shift(index == ZLView.PageIndex.next);
                     view.onScrollingFinished(index);
                     ZLApplication.Instance().onRepaintFinished();
+                    ZLTextView view1 = (ZLTextView) ZLApplication.Instance().getCurrentView();
+                    String s=view1.getText();
+//                    LogUtils.i("是否正在播放=" + activity.onSpeak);
+                    if (onSpeak.equals("playing")){
+                        if (!TextUtils.isEmpty(s)) {
+                            activity.StartPlay(s);
+                        }
+                    }{
+                        LogUtils.i("不是处在播放状态");
+                    }
+                    LogUtils.i("动画执行之后数据="+s);
+                    LogUtils.i("动画执行之后数据="+s.length());
                     break;
                 }
                 case AnimatedScrollingBackward: // 没有翻到 下一页/上一页 则还在当前页

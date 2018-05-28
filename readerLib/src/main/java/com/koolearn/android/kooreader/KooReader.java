@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.PowerManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -60,17 +59,16 @@ import java.util.HashMap;
 
 import static com.nostra13.universalimageloader.core.ImageLoader.TAG;
 
-public final class KooReader extends KooReaderMainActivity implements ZLApplicationWindow ,NavigationPopup.onVoice{
+public final class KooReader extends KooReaderMainActivity implements ZLApplicationWindow, NavigationPopup.onVoice {
     public static final int RESULT_DO_NOTHING = RESULT_FIRST_USER;
-    public String bookId ;
+    public String bookId;
     private String memberId;
-    public boolean onSpeak;//判断是否正在播放
 
-    public static void openBookActivity(Context context, Book book, Bookmark bookmark,String bookId) {
+    public static void openBookActivity(Context context, Book book, Bookmark bookmark, String bookId) {
         final Intent intent = new Intent(context, KooReader.class);
         intent.setAction(KooReaderIntents.Action.VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("bookId",bookId);//图书Id
+        intent.putExtra("bookId", bookId);//图书Id
         KooReaderIntents.putBookExtra(intent, book);
         KooReaderIntents.putBookmarkExtra(intent, bookmark);
         context.startActivity(intent);
@@ -147,8 +145,9 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
         super.onCreate(icicle);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
+        SharedPreferencesUtil.getInstance().putString("onSpeak","stop");
         mTts = SpeechSynthesizer.createSynthesizer(KooReader.this, mTtsInitListener);
-        mToast = Toast.makeText(this,"",Toast.LENGTH_SHORT);
+        mToast = Toast.makeText(this, "", Toast.LENGTH_SHORT);
 
         myRootView = (RelativeLayout) findViewById(R.id.root_view);
         myMainView = (ZLAndroidWidget) findViewById(R.id.main_view);
@@ -184,7 +183,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
 
         }
         if (myKooReaderApp.getPopupById(VoicePopup.ID) == null) {
-            new VoicePopup(myKooReaderApp,mTts);
+            new VoicePopup(myKooReaderApp, mTts);
 
         }
         if (myKooReaderApp.getPopupById(SettingPopup.ID) == null) {
@@ -209,13 +208,14 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
 
         final Intent intent = getIntent();
         myOpenBookIntent = intent;
-        bookId=myOpenBookIntent.getStringExtra("bookId");
+        bookId = myOpenBookIntent.getStringExtra("bookId");
         LogUtils.i(bookId);
         SharedPreferencesUtil.getInstance().putString("bookId", bookId);
-        memberId=SharedPreferencesUtil.getInstance().getString("login_id");
+        memberId = SharedPreferencesUtil.getInstance().getString("login_id");
         ZLAndroidPaintContext.myReader = myKooReaderApp;
 
     }
+
     // 语音合成对象
     private SpeechSynthesizer mTts;
     private Toast mToast;
@@ -398,7 +398,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
     protected void onDestroy() {
         getCollection().unbind();
         super.onDestroy();
-        if( null != mTts ){
+        if (null != mTts) {
             mTts.stopSpeaking();
             // 退出时释放连接
             mTts.destroy();
@@ -494,12 +494,14 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
         myKooReaderApp.getViewWidget().reset();
         myKooReaderApp.getViewWidget().repaint();
     }
+
     //显示popup弹出框
     public void navigate() {
         //如果正在播放语音中，点击屏幕
-        if (onSpeak){
+        String onSpeak = SharedPreferencesUtil.getInstance().getString("onSpeak");
+        if (onSpeak.equals("playing")) {
             ((VoicePopup) myKooReaderApp.getPopupById(VoicePopup.ID)).runNavigation();
-        }else {
+        } else {
             ((NavigationPopup) myKooReaderApp.getPopupById(NavigationPopup.ID)).runNavigation();
         }
     }
@@ -663,16 +665,16 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
     //获取语音播放的内容
     @Override
     public void onVoiceListener() {
-        ZLTextView view = myKooReaderApp.getTextView();
-        String text=view.getText();
-        LogUtils.i("首次播放数据="+text);
+        final ZLTextView view = myKooReaderApp.getTextView();
+        String text = view.getText();
+        LogUtils.i("首次播放数据=" + text);
         StartPlay(text);
     }
 
-    public void StartPlay(String text){
-        if( null == mTts ){
+    public void StartPlay(String text) {
+        if (null == mTts) {
             // 创建单例失败，与 21001 错误为同样原因，参考 http://bbs.xfyun.cn/forum.php?mod=viewthread&tid=9688
-            this.showTip( "创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化" );
+            this.showTip("创建对象失败，请确认 libmsc.so 放置正确，且有调用 createUtility 进行初始化");
             return;
         }
         // 移动数据分析，收集开始合成事件
@@ -685,6 +687,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
             showTip("语音合成失败,错误码: " + code);
         }
     }
+
     /**
      * 初始化监听。
      */
@@ -693,7 +696,7 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
         public void onInit(int code) {
             Log.d(TAG, "InitListener init() code = " + code);
             if (code != ErrorCode.SUCCESS) {
-                showTip("初始化失败,错误码："+code);
+                showTip("初始化失败,错误码：" + code);
             } else {
                 // 初始化成功，之后可以调用startSpeaking方法
                 // 注：有的开发者在onCreate方法中创建完合成对象之后马上就调用startSpeaking进行合成，
@@ -709,19 +712,17 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
         @Override
         public void onSpeakBegin() {
             showTip("开始播放");
-            onSpeak=true;
+            SharedPreferencesUtil.getInstance().putString("onSpeak","playing");
         }
 
         @Override
         public void onSpeakPaused() {
             showTip("暂停播放");
-            onSpeak=false;
         }
 
         @Override
         public void onSpeakResumed() {
             showTip("继续播放");
-            onSpeak=true;
         }
 
         @Override
@@ -740,33 +741,17 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
             showTip(String.format(getString(R.string.tts_toast_format),
                     mPercentForBuffering, mPercentForPlaying));
 
-            if (mPercentForPlaying==98){
-                ZLTextView view = myKooReaderApp.getTextView();
-                view.cleanText();//清楚之前的数据
-                myMainView.onDraw(true);
-            }
-
         }
 
         @Override
         public void onCompleted(SpeechError error) {
             if (error == null) {
                 showTip("播放完成");
-                //播放完成自动翻页
-                //找到进入下一页的方法，在播放完成之后，先执行cleanText()将之前数据清空，然后将下页的数据传递过来，
-                //一开始写的是用户点击听书才传递数据，需要修改一下
-                ZLTextView view1 = myKooReaderApp.getTextView();
-                String text = view1.getText();
-                LogUtils.i("播放完成下页数据="+text);
-                if (!TextUtils.isEmpty(text)) {
-                    StartPlay(text);
-                }
-
-
+                //本页播放完成进入下一页
+                myMainView.onDraw(true);
             } else if (error != null) {
                 showTip(error.getPlainDescription(true));
             }
-            onSpeak=false;
         }
 
         @Override
@@ -779,29 +764,32 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
             //	}
         }
     };
+
     private void showTip(final String str) {
         mToast.setText(str);
         mToast.show();
     }
+
     /**
      * 参数设置
+     *
      * @return
      */
-    private void setParam(){
+    private void setParam() {
         // 清空参数
         mTts.setParameter(SpeechConstant.PARAMS, null);
         // 根据合成引擎设置相应参数
-        if(mEngineType.equals(SpeechConstant.TYPE_CLOUD)) {
+        if (mEngineType.equals(SpeechConstant.TYPE_CLOUD)) {
             mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD);
             // 设置在线合成发音人
             mTts.setParameter(SpeechConstant.VOICE_NAME, voicer);
             //设置合成语速
             mTts.setParameter(SpeechConstant.SPEED, "50");
             //设置合成音调
-            mTts.setParameter(SpeechConstant.PITCH,  "50");
+            mTts.setParameter(SpeechConstant.PITCH, "50");
             //设置合成音量
             mTts.setParameter(SpeechConstant.VOLUME, "50");
-        }else {
+        } else {
             mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_LOCAL);
             // 设置本地合成发音人 voicer为空，默认通过语记界面指定发音人。
             mTts.setParameter(SpeechConstant.VOICE_NAME, "");
@@ -818,6 +806,6 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         mTts.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
-        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory()+"/msc/tts.wav");
+        mTts.setParameter(SpeechConstant.TTS_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/tts.wav");
     }
 }

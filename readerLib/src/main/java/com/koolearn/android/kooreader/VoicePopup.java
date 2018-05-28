@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.iflytek.cloud.SpeechSynthesizer;
+import com.koolearn.android.util.SharedPreferencesUtil;
 import com.koolearn.klibrary.android.R;
 import com.koolearn.klibrary.core.application.ZLApplication;
 import com.koolearn.kooreader.kooreader.KooReaderApp;
@@ -48,6 +49,8 @@ final class VoicePopup extends ZLApplication.PopupPanel {
         if (myWindow != null) {
             myWindow.show();
         }
+        SharedPreferencesUtil.getInstance().putString("onSpeak","stop");
+        mTts.pauseSpeaking();
     }
 
     @Override
@@ -56,6 +59,8 @@ final class VoicePopup extends ZLApplication.PopupPanel {
         if (myWindow != null) {
             myWindow.hide();
         }
+        SharedPreferencesUtil.getInstance().putString("onSpeak","playing");
+        mTts.resumeSpeaking();
     }
 
     private void setStatusBarVisibility(boolean visible) {
@@ -91,24 +96,26 @@ final class VoicePopup extends ZLApplication.PopupPanel {
             @Override
             public void onClick(View v) {
                 Application.hideActivePopup();
-                myActivity.onSpeak=false;
                 mTts.stopSpeaking();
+                SharedPreferencesUtil.getInstance().putString("onSpeak","stop");
             }
         });
+        //暂停
         tts_pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Application.hideActivePopup();
                 mTts.pauseSpeaking();
-                myActivity.onSpeak=false;
+                SharedPreferencesUtil.getInstance().putString("onSpeak","stop");
             }
         });
+        //继续
         tts_resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Application.hideActivePopup();
                 mTts.resumeSpeaking();
-                myActivity.onSpeak=false;
+                SharedPreferencesUtil.getInstance().putString("onSpeak","playing");
             }
         });
 

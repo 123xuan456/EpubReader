@@ -19,8 +19,13 @@
 
 package com.koolearn.kooreader.kooreader;
 
+import com.koolearn.klibrary.text.view.ZLTextView;
 import com.koolearn.kooreader.kooreader.options.PageTurningOptions;
 
+/**
+ * 每次进入下一页都会执行
+ * 在run方法清空上一页保存的语音数据
+ */
 class TurnPageAction extends KooAction {
 	private final boolean myForward;
 
@@ -41,6 +46,8 @@ class TurnPageAction extends KooAction {
 	@Override
 	protected void run(Object ... params) {
 		final PageTurningOptions preferences = Reader.PageTurningOptions;
+		ZLTextView view1 = Reader.getTextView();
+		view1.cleanText();//清除之前的数据
 		if (params.length == 2 && params[0] instanceof Integer && params[1] instanceof Integer) {
 			final int x = (Integer)params[0];
 			final int y = (Integer)params[1];

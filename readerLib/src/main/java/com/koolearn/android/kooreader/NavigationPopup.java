@@ -153,6 +153,7 @@ final class NavigationPopup extends ZLApplication.PopupPanel {
             public void onClick(View v) {
                 Application.hideActivePopup();
                 ((SettingPopup) myKooReader.getPopupById(SettingPopup.ID)).runNavigation();
+
             }
         });
 
