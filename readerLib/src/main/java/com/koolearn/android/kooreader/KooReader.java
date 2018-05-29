@@ -749,6 +749,13 @@ public final class KooReader extends KooReaderMainActivity implements ZLApplicat
                 showTip("播放完成");
                 //本页播放完成进入下一页
                 myMainView.onDraw(true);
+                final ZLTextView textView = myKooReaderApp.getTextView();
+                String pagePosition = textView.pagePositionPec();
+                LogUtils.i(pagePosition);
+                //阅读完成
+                if (pagePosition.equals("100.00%")){
+                    SharedPreferencesUtil.getInstance().putString("onSpeak","stop");
+                }
             } else if (error != null) {
                 showTip(error.getPlainDescription(true));
             }
